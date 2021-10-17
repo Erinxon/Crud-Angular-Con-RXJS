@@ -1,0 +1,11 @@
+.btn{
+    margin-top: 1em;
+    width: 100%;
+}
+
+.invalidFeedback {
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 0.875em;
+    color: #df382c;
+}

@@ -1,0 +1,57 @@
+<div class="container mt-4">
+    <form class="mb-3" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <fieldset>
+            <div class="form-group">
+                <label class="form-label mt-4">Nombre</label>
+                <input 
+                formControlName="nombre" 
+                type="text" 
+                class="form-control" 
+                [ngClass]="{'is-invalid': nombre?.invalid && (nombre?.dirty || nombre?.touched),
+                'is-valid': nombre?.valid && (nombre?.dirty || nombre?.touched)}"
+                placeholder="Escribe tu nombre">
+                <div *ngIf="nombre?.invalid && (nombre?.dirty || nombre?.touched)">
+                    <div class="invalidFeedback" *ngIf="nombre?.errors?.required">
+                        El nombre es requerido
+                    </div>
+                    <div class="invalidFeedback" *ngIf="nombre?.errors?.minlength">
+                        El nombre debe tener al menos {{nombre?.errors?.minlength?.requiredLength}} caracteres.
+                    </div>
+                    <div class="invalidFeedback" *ngIf="nombre?.errors?.maxlength">
+                        El nombre no debe tener mas de 100 caracteres.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label mt-4">Apellido</label>
+                <input 
+                formControlName="apellido" 
+                type="text" 
+                class="form-control" 
+                [ngClass]="{'is-invalid': apellido?.invalid && (apellido?.dirty || apellido?.touched),
+                'is-valid': apellido?.valid && (apellido?.dirty || apellido?.touched)}"
+                placeholder="Escribe tu apellido">
+
+                <div *ngIf="apellido?.invalid && (apellido?.dirty || apellido?.touched)">
+                    <div class="invalidFeedback" *ngIf="apellido?.errors?.required">
+                        El apellido es requerido
+                    </div>
+                    <div class="invalidFeedback" *ngIf="apellido?.errors?.minlength">
+                        El apellido debe tener al menos {{apellido?.errors?.minlength?.requiredLength}} caracteres.
+                    </div>
+                    <div class="invalidFeedback" *ngIf="apellido?.errors?.maxlength">
+                        El apellido no debe tener mas de 100 caracteres.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-check form-switch mt-4">
+                    <input class="form-check-input" formControlName="estado" type="checkbox" id="flexSwitchCheckChecked">
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Actualizar estado</label>
+                  </div>
+            </div>
+            <button type="submit" [disabled]="form.invalid"  class="btn btn-primary">Editar</button>
+            <button [routerLink]="['/']" class="btn btn-secondary">Volver atras</button>
+        </fieldset>
+    </form>
+</div>
